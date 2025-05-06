@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: SubTrack
+  datasource:
+    url: jdbc:postgresql://localhost:5432/subTrack
+    username: user
+    password: pass
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true

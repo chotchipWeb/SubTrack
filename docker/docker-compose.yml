@@ -1,0 +1,17 @@
+name: "SubTrack"
+services:
+  postgrrs:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: subTrack
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge
