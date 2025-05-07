@@ -1,6 +1,7 @@
 package com.chotchip.subTrack.service;
 
 import com.chotchip.subTrack.dto.CreateUserDTO;
+import com.chotchip.subTrack.dto.UpdateUserDTO;
 import com.chotchip.subTrack.entity.User;
 import com.chotchip.subTrack.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,10 +30,10 @@ public class UserService {
     }
 
     @Transactional
-    public User updateUser(UUID id, User user) {
+    public User updateUser(UUID id, UpdateUserDTO user) {
         User userFind = userRepository.findById(id).get();
-        userFind.setEmail(user.getEmail());
-        userFind.setPassword(user.getPassword());
+        userFind.setEmail(user.email());
+        userFind.setPassword(user.password());
         return userFind;
     }
 

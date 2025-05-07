@@ -10,7 +10,7 @@ cd SubTrack
 cd docker
 docker-compose up --build
 ```
-
+- Порт по умолчанию 8080
 ### Swagger
 
 http://localhost:8080/swagger-ui/index.html#/

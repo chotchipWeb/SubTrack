@@ -1,8 +1,10 @@
 package com.chotchip.subTrack.controller;
 
 import com.chotchip.subTrack.dto.CreateUserDTO;
+import com.chotchip.subTrack.dto.UpdateUserDTO;
 import com.chotchip.subTrack.entity.User;
 import com.chotchip.subTrack.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
+
 //TODO сделать логирование и дто для обновление юэера
 @RestController
 @RequestMapping("/api/v1/users")
@@ -41,7 +44,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") UUID id, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable("id") UUID id, @RequestBody UpdateUserDTO user) {
         return ResponseEntity
                 .ok(
                         userService.updateUser(id, user)
