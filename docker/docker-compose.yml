@@ -1,6 +1,6 @@
 name: "SubTrack"
 services:
-  postgrrs:
+  postgres:
     image: postgres:16-alpine
     environment:
       POSTGRES_DB: subTrack
@@ -10,7 +10,17 @@ services:
       - "5432:5432"
     networks:
       - app-network
-
+  app:
+    image: subtrack:v1
+    build:
+      context: ../
+    command: [ "--spring.profiles.active=docker" ]
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
 
 networks:
   app-network:

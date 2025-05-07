@@ -2,7 +2,6 @@ package com.chotchip.subTrack.repository;
 
 import com.chotchip.subTrack.entity.Subscriptions;
 import com.chotchip.subTrack.entity.enumurated.ServiceType;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
