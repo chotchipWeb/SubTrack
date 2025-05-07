@@ -2,6 +2,7 @@ package com.chotchip.subTrack.controller;
 
 import com.chotchip.subTrack.dto.CreateSubscriptionsDTO;
 import com.chotchip.subTrack.entity.Subscriptions;
+import com.chotchip.subTrack.entity.enumurated.ServiceType;
 import com.chotchip.subTrack.service.SubscriptionsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,5 +51,11 @@ public class SubscriptionsController {
         return ResponseEntity.noContent().build();
     }
 
-
+    @GetMapping("/top")
+    public ResponseEntity<List<ServiceType>> getTopSubscriptions(@PathVariable("userId") UUID userId) {
+        log.info("Rest request to get top subscriptions");
+        return ResponseEntity.ok(
+                subService.getTopSubscriptions(userId)
+        );
+    }
 }

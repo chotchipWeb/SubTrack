@@ -2,10 +2,12 @@ package com.chotchip.subTrack.service;
 
 import com.chotchip.subTrack.dto.CreateSubscriptionsDTO;
 import com.chotchip.subTrack.entity.Subscriptions;
+import com.chotchip.subTrack.entity.enumurated.ServiceType;
 import com.chotchip.subTrack.mapper.SubscriptionsMapper;
 import com.chotchip.subTrack.repository.SubscriptionsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,5 +42,12 @@ public class SubscriptionsService {
     public void deleteSub(UUID userId, UUID subId) {
         subRepository.deleteById(subId);
         log.info("Delete subscriptions by ID: {} from the user ID: {}", subId, userId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ServiceType> getTopSubscriptions(UUID userId) {
+        List<ServiceType> top3ActiveSubscriptions = subRepository.findTop3ActiveSubscriptions();
+        log.info("Get top subscriptions: {} from the user ID: {}", top3ActiveSubscriptions, userId);
+        return top3ActiveSubscriptions;
     }
 }

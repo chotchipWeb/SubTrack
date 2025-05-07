@@ -1,6 +1,7 @@
 package com.chotchip.subTrack.repository;
 
 import com.chotchip.subTrack.entity.Subscriptions;
+import com.chotchip.subTrack.entity.enumurated.ServiceType;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,20 +17,20 @@ public interface SubscriptionsRepository extends JpaRepository<Subscriptions, UU
 
     @Query(
             value = """
-                    SELECT 
-                        s.service_name as serviceName, 
-                        COUNT(*) as subscriptionCount 
-                    FROM 
+                    SELECT
+                        s.service_type as serviceType,
+                        COUNT(*) as subscriptionCount
+                    FROM
                         subscriptions s
-                    WHERE 
-                        s.is_active = TRUE
-                    GROUP BY 
-                        s.service_name
-                    ORDER BY 
+                    WHERE
+                        s.active = TRUE
+                    GROUP BY
+                        s.service_type
+                    ORDER BY
                         COUNT(*) DESC
-                    LIMIT 3
+                    LIMIT 3;
                     """,
             nativeQuery = true
     )
-    List<Subscriptions> findTop3ActiveSubscriptions(Pageable pageable);
+    List<ServiceType> findTop3ActiveSubscriptions();
 }
