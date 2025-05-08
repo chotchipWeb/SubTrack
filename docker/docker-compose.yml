@@ -11,7 +11,7 @@ services:
     networks:
       - app-network
   app:
-    image: subtrack:v1
+    image: subtrack:v2
     build:
       context: ../
     command: [ "--spring.profiles.active=docker" ]

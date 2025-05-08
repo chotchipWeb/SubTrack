@@ -1,5 +1,12 @@
 package com.chotchip.subTrack.dto;
 
-public record CreateUserDTO(String email,String password) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "DTO для создания пользователя")
+public record CreateUserDTO(
+        @Schema(description = "Email пользователя", example = "example@gmail.com")
+        String email,
+        @Schema(description = "Пароль пользователя", example = "123456")
+        String password) {
 
 }
